@@ -12,7 +12,7 @@ input [DATA_WIDTH-1:0] Bin,
 output [DATA_WIDTH*3-1:0] Cout
 );
 
-logic [DATA_WIDTH-1:0] mult, accum;
+logic [DATA_WIDTH*3-1:0] mult, accum;
 
 always_ff @ (posedge clk) begin
     if (!rst_n) begin
@@ -25,7 +25,7 @@ always_ff @ (posedge clk) begin
     end
     else if (En) begin
         mult <= Ain * Bin;
-        accum <= accum + mult;
+        accum <= Cout;
     end
     else begin
         mult <= mult;
@@ -33,6 +33,6 @@ always_ff @ (posedge clk) begin
     end
 end
 
-assign Cout = accum;    
+assign Cout = accum + mult;    
 
 endmodule
