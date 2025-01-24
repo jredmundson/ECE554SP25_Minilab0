@@ -1,5 +1,5 @@
 Resource Usage Summary report for Minilab0
-Thu Jan 23 19:07:32 2025
+Fri Jan 24 14:56:57 2025
 Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
 
 
@@ -36,25 +36,25 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+--------------+
 ; Resource                                    ; Usage        ;
 +---------------------------------------------+--------------+
-; Estimate of Logic utilization (ALMs needed) ; 127          ;
+; Estimate of Logic utilization (ALMs needed) ; 126          ;
 ;                                             ;              ;
-; Combinational ALUT usage for logic          ; 182          ;
+; Combinational ALUT usage for logic          ; 179          ;
 ;     -- 7 input functions                    ; 0            ;
-;     -- 6 input functions                    ; 22           ;
-;     -- 5 input functions                    ; 33           ;
-;     -- 4 input functions                    ; 86           ;
-;     -- <=3 input functions                  ; 41           ;
+;     -- 6 input functions                    ; 25           ;
+;     -- 5 input functions                    ; 31           ;
+;     -- 4 input functions                    ; 84           ;
+;     -- <=3 input functions                  ; 39           ;
 ;                                             ;              ;
-; Dedicated logic registers                   ; 174          ;
+; Dedicated logic registers                   ; 172          ;
 ;                                             ;              ;
 ; I/O pins                                    ; 70           ;
 ;                                             ;              ;
 ; Total DSP Blocks                            ; 1            ;
 ;                                             ;              ;
 ; Maximum fan-out node                        ; KEY[0]~input ;
-; Maximum fan-out                             ; 175          ;
-; Total fan-out                               ; 1557         ;
-; Average fan-out                             ; 3.13         ;
+; Maximum fan-out                             ; 173          ;
+; Total fan-out                               ; 1545         ;
+; Average fan-out                             ; 3.14         ;
 +---------------------------------------------+--------------+
 
 

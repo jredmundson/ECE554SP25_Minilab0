@@ -65,8 +65,9 @@ reg [DATA_WIDTH*3-1:0] result;
 logic rst_n, clk, rden_ff;
 wire [1:0] rden, wren, full, empty;
 wire [DATA_WIDTH-1:0] dataout [0:1];
-logic [DATA_WIDTH*3-1:0] macout, accum, accum_out;
-wire [DATA_WIDTH*2-1:0] mult_result;
+logic [DATA_WIDTH*3-1:0] macout;
+wire [DATA_WIDTH*2-1:0] mult_result, accum, accum_out;
+int expected_value = 7000;
 
 always #5 clk = ~clk;
 
@@ -177,8 +178,18 @@ always @(posedge clk or negedge rst_n) begin
 		end
 		DONE:
 		begin
-		  result <= accum_out;
-		  @(posedge clk) $stop;
+		  result <= {8'h00, accum_out};
+		  @(posedge clk)
+		  // Print the expected and actual values
+			$display("Expected Value: %0d", expected_value);
+			$display("Actual Value  : %0d", result[15:0]);
+			
+			// Check if they match
+			if (result[15:0] == expected_value)
+				$display("SUCCESS");
+			else
+				$display("FAILURE: Values do not match");
+		  $stop;
 		end
 	 endcase
   end

@@ -21,9 +21,7 @@ logic [$clog2(DEPTH):0] size;
 always @(posedge clk, negedge rst_n) begin
   if (!rst_n) begin
     memory <= '{default: '0};
-    size <= 0;
-    empty <= 1;
-    full <= 0;
+    size <= '0;
   end
 
   else if (wren && !full) begin
@@ -31,26 +29,19 @@ always @(posedge clk, negedge rst_n) begin
       memory[i + 1] <= memory[i];
     end
     memory[0] <= i_data;
-    if (!rden) begin
-      size <= (size == DEPTH) ? size : size + 1;
-      full <= (size == DEPTH);
-      empty <= 0;
-    end 
+    if (!rden)
+      size <= full ? size : size + 1'b1;
   end
 
-  else if (!wren && rden) begin
-    size <= (size != 0) ? size - 1 : size;
-    empty <= ~|size;
-    full <= 0;
-  end
+  else if (!wren && rden)
+    size <= empty ? size : size - 1'b1;
 
-  else begin
+  else
     size <= size;
-    empty <= ~|size;
-    full <= (size == DEPTH);
-  end
 end
 
-assign o_data = (size == 0) | !rden ? '0 : memory[size-1];
+assign empty = ~|size;
+assign full = size == DEPTH;
+assign o_data = (size == '0) | !rden ? '0 : memory[size-1];
 
 endmodule
