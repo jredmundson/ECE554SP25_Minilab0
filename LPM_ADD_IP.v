@@ -48,12 +48,12 @@ module LPM_ADD_IP (
 	input	  aclr;
 	input	  clken;
 	input	  clock;
-	input	[7:0]  dataa;
-	input	[7:0]  datab;
-	output	[7:0]  result;
+	input	[15:0]  dataa;
+	input	[15:0]  datab;
+	output	[15:0]  result;
 
-	wire [7:0] sub_wire0;
-	wire [7:0] result = sub_wire0[7:0];
+	wire [15:0] sub_wire0;
+	wire [15:0] result = sub_wire0[15:0];
 
 	lpm_add_sub	LPM_ADD_SUB_component (
 				.aclr (aclr),
@@ -76,7 +76,7 @@ module LPM_ADD_IP (
 		LPM_ADD_SUB_component.lpm_pipeline = 1,
 		LPM_ADD_SUB_component.lpm_representation = "UNSIGNED",
 		LPM_ADD_SUB_component.lpm_type = "LPM_ADD_SUB",
-		LPM_ADD_SUB_component.lpm_width = 8;
+		LPM_ADD_SUB_component.lpm_width = 16;
 
 
 endmodule
@@ -102,7 +102,7 @@ endmodule
 // Retrieval info: PRIVATE: WhichConstant NUMERIC "0"
 // Retrieval info: PRIVATE: aclr NUMERIC "1"
 // Retrieval info: PRIVATE: clken NUMERIC "1"
-// Retrieval info: PRIVATE: nBit NUMERIC "8"
+// Retrieval info: PRIVATE: nBit NUMERIC "16"
 // Retrieval info: PRIVATE: new_diagram STRING "1"
 // Retrieval info: LIBRARY: lpm lpm.lpm_components.all
 // Retrieval info: CONSTANT: LPM_DIRECTION STRING "ADD"
@@ -110,19 +110,19 @@ endmodule
 // Retrieval info: CONSTANT: LPM_PIPELINE NUMERIC "1"
 // Retrieval info: CONSTANT: LPM_REPRESENTATION STRING "UNSIGNED"
 // Retrieval info: CONSTANT: LPM_TYPE STRING "LPM_ADD_SUB"
-// Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "8"
+// Retrieval info: CONSTANT: LPM_WIDTH NUMERIC "16"
 // Retrieval info: USED_PORT: aclr 0 0 0 0 INPUT NODEFVAL "aclr"
 // Retrieval info: USED_PORT: clken 0 0 0 0 INPUT NODEFVAL "clken"
 // Retrieval info: USED_PORT: clock 0 0 0 0 INPUT NODEFVAL "clock"
-// Retrieval info: USED_PORT: dataa 0 0 8 0 INPUT NODEFVAL "dataa[7..0]"
-// Retrieval info: USED_PORT: datab 0 0 8 0 INPUT NODEFVAL "datab[7..0]"
-// Retrieval info: USED_PORT: result 0 0 8 0 OUTPUT NODEFVAL "result[7..0]"
+// Retrieval info: USED_PORT: dataa 0 0 16 0 INPUT NODEFVAL "dataa[15..0]"
+// Retrieval info: USED_PORT: datab 0 0 16 0 INPUT NODEFVAL "datab[15..0]"
+// Retrieval info: USED_PORT: result 0 0 16 0 OUTPUT NODEFVAL "result[15..0]"
 // Retrieval info: CONNECT: @aclr 0 0 0 0 aclr 0 0 0 0
 // Retrieval info: CONNECT: @clken 0 0 0 0 clken 0 0 0 0
 // Retrieval info: CONNECT: @clock 0 0 0 0 clock 0 0 0 0
-// Retrieval info: CONNECT: @dataa 0 0 8 0 dataa 0 0 8 0
-// Retrieval info: CONNECT: @datab 0 0 8 0 datab 0 0 8 0
-// Retrieval info: CONNECT: result 0 0 8 0 @result 0 0 8 0
+// Retrieval info: CONNECT: @dataa 0 0 16 0 dataa 0 0 16 0
+// Retrieval info: CONNECT: @datab 0 0 16 0 datab 0 0 16 0
+// Retrieval info: CONNECT: result 0 0 16 0 @result 0 0 16 0
 // Retrieval info: GEN_FILE: TYPE_NORMAL LPM_ADD_IP.v TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL LPM_ADD_IP.inc FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL LPM_ADD_IP.cmp FALSE

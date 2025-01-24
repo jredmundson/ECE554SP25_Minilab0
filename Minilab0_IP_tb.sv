@@ -62,7 +62,7 @@ reg [1:0] state;
 reg [DATA_WIDTH-1:0] datain [0:1];
 reg [DATA_WIDTH*3-1:0] result;
 
-logic rst_n, clk;
+logic rst_n, clk, rden_ff;
 wire [1:0] rden, wren, full, empty;
 wire [DATA_WIDTH-1:0] dataout [0:1];
 logic [DATA_WIDTH*3-1:0] macout, accum, accum_out;
@@ -87,14 +87,15 @@ generate
   for (i=0; i<2; i=i+1) begin : fifo_gen
     FIFO_IP input_fifo
     (
-    .clock(clk),
+    .rdclk(clk),
+	.wrclk(clk),
     .aclr(!rst_n),
     .rdreq(rden[i]),
     .wrreq(wren[i]),
     .data(datain[i]),
     .q(dataout[i]),
-    .full(full[i]),
-    .empty(empty[i])
+    .wrfull(full[i]),
+    .rdempty(empty[i])
     );
   end
 endgenerate
@@ -113,11 +114,8 @@ endgenerate
 // );
 
 LPM_MULT_IP mult_i (
-	.clock(clk),
-	.clken(&rden),
-	.aclr(!rst_n),
-	.dataa(dataout[0]),
-	.datab(dataout[1]),
+	.dataa(rden_ff ? dataout[0] : '0),
+	.datab(rden_ff ? dataout[1] : '0),
 	.result(mult_result)
 );
 
@@ -132,12 +130,12 @@ LPM_ADD_IP accum_i (
 
 assign accum = accum_out;
 
-// always @ (posedge clk) begin
-// 	if (!rst_n)
-// 		accum <= 24'b0;
-// 	else
-// 		accum <= accum_out;
-// end
+always @ (posedge clk) begin
+	if (!rst_n)
+		rden_ff <= '0;
+	else
+		rden_ff <= &rden;
+end
 
 //=======================================================
 //  Structural coding
