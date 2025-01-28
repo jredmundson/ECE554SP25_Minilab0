@@ -2,8 +2,8 @@ Github link:
 https://github.com/jredmundson/ECE554SP25_Minilab0
 
 Github Usernames:
-jredmundson (Jacob Edmundson)
-jecampos (Jaime Campos)
+- jredmundson (Jacob Edmundson)
+- jecampos (Jaime Campos)
 
 #  Verilog Files
 
